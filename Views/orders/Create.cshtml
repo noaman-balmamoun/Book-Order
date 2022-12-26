@@ -1,0 +1,81 @@
+﻿@model Book_Order.Models.book
+@{
+    Layout = "~/Views/Shared/_Layout - Copier.cshtml";
+}
+@{
+    ViewData["Title"] = "Create";
+}
+
+
+<h1>Create</h1>
+
+<h4>orders</h4>
+<hr />
+<form asp-action="Create">
+
+<dl class="row">
+    
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.Id)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.Id)
+    </dd>
+
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.title)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.title)
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.info)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.info)
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.bookquantity)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.bookquantity)
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.price)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.price)
+    </dd>
+
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.author)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.author)
+    </dd>
+    
+    <dd>
+        <img src="~/images/@Model.imgfile" height="150" />
+        
+
+    </dd>
+</dl>
+
+<input type="hidden" name="bookId" value=@Model.Id />
+<div class="form-group">
+        <label for="quantity" class="control-label"><b>Quantity</b></label>
+        <input name="quantity" class="form-control" style="width:150px;height:30px" />
+
+</div>
+<p></p>
+<input type="submit" value="Create" class="btn btn-primary" />
+
+
+</form>
+
+<a asp-controller="Books" asp-action="catalogue">Back to Catalogue</a>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

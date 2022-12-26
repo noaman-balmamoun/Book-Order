@@ -1,0 +1,72 @@
+﻿
+
+@model PaginatedList<Book_Order.Models.orders>
+
+
+@{
+    ViewData["Title"] = "Index";
+}
+<p class="text-center">@Model.Count() Orders exist.</p>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <h1 class="text-center">Report Of orders</h1>
+        </div>
+
+        <div class="col-md-6 text-end">
+            <a class="btn btn-primary" asp-action="Create"><i class="bi bi-plus-circle"></i>&nbsp; Create New</a>
+        </div>
+
+
+
+    </div>
+</div>
+
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>
+                Book ID
+            </th>
+            <th>
+                User ID
+            </th>
+            <th>
+                Quantite
+            </th>
+            <th>
+                Order Date
+            </th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.bookId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.userid)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.quantity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.orderdate)
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>
+
+@{
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+
+}
+<a asp-action="Index" asp-route-pageNumber="@(Model.PageIndex-1)" class="btn btn-default @prevDisabled">Previous</a>
+<a asp-action="Index" asp-route-pageNumber="@(Model.PageIndex+1)" class="btn btn-default @nextDisabled">Next</a>

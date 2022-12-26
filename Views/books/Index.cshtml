@@ -1,0 +1,84 @@
+﻿
+@model IEnumerable<Book_Order.Models.book>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<h1 class="text-center">List Of Books</h1>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <h1>List</h1>
+        </div>
+
+        <div class="col-md-6 text-end">
+            <a class="btn btn-primary" asp-action="Create"><i class="bi bi-plus-circle"></i>&nbsp; Create New</a>
+        </div>
+
+
+
+    </div>
+</div>
+
+
+<table class="table">
+    <thead>
+        <tr>
+           
+            <th>
+               Title
+            </th>
+            <th>
+               Infos
+            </th>
+            <th>
+               Book Quantite
+            </th>
+            <th>
+               Prix
+            </th>
+            <th>
+               Category ID
+            </th>
+            <th>
+              Auteur
+            </th>
+            <th>Action</th>
+         
+           
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+            <tr>
+               
+            <td>
+                @Html.DisplayFor(modelItem => item.title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.info)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.bookquantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.cataid)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.author)
+            </td>
+            
+            <td>
+                <a  class="btn btn-primary"asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a class="btn btn-success" asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
